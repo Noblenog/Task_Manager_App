@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-12">
+      <h2 class="text-center mb-3 task-title"><%= title %></h2>
+      <% if (tasks && tasks.length > 0) { %>
+        <div class="row justify-content-center">
+          <% tasks.forEach((task) => { %>
+            <div class="col-md-12 mb-5">
+              <%- include('./_taskCard', { task: task }) %>
+            </div>
+          <% }); %>
+        </div>
+      <% } else { %>
+        <div class="task-block empty-block text-center">No Tasks Here!</div>
+      <% } %>
+    </div>
+  </div>
+</div>

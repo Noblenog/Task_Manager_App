@@ -1,0 +1,74 @@
+<div class="task-block task-card mt-3 mb-5 <%= task.Task_priority_id === 1 ? 'high-priority' : task.Task_priority_id === 2 ? 'medium-priority' : 'low-priority' %>">
+  <div class="card-body text-center">
+    <div class="d-flex justify-content-between align-items-center w-100">
+      <h2 class="card-title w-100 text-center">
+        <a href="/view/<%= task.Task_id %>" style="font-weight: bold;"><%= task.Task_name %></a>
+      </h2>
+    </div>
+    <p class="card-text" style="font-weight: bold; margin-top: 15px;"><%= dayjs(task.Task_due_date).format('dddd, MMMM D, YYYY') %></p>
+    <p class="card-text" style="margin-top: 15px;"><%= task.Task_description %></p>
+    <div class="d-flex justify-content-between align-items-center w-100">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="completeCheckbox<%= task.Task_id %>" <%= task.Task_completion ? 'checked' : '' %> onchange="toggleTaskCompletion(<%= task.Task_id %>, this.checked)">
+        <label class="form-check-label" for="completeCheckbox<%= task.Task_id %>">
+          Mark as Complete
+        </label>
+      </div>
+      <div class="dropdown">
+        <button class="btn btn-link p-0" type="button" id="dropdownMenuButton<%= task.Task_id %>" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="/imgs/image.png" class="img-fluid" alt="Task Image" style="max-width: 30px;">
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton<%= task.Task_id %>">
+          <li>
+            <form action="/view/<%= task.Task_id %>" method="GET">
+              <button type="submit" class="dropdown-item">View Task</button>
+            </form>
+          </li>
+          <li>
+            <form action="/edit/<%= task.Task_id %>" method="GET">
+              <button type="submit" class="dropdown-item">Edit Task</button>
+            </form>
+          </li>
+          <li>
+            <form action="/del/<%= task.Task_id %>" method="POST" onsubmit="return confirm('Are you sure you want to delete this task?');">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+              <button type="submit" class="dropdown-item text-danger text-decoration-underline">Delete Task</button>
+            </form>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function toggleTaskCompletion(taskId, isComplete) {
+    fetch(`/tasks/${taskId}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'CSRF-Token': '<%= csrfToken %>', // Include CSRF token
+        'Authorization': '<%= token %>' // Include JWT token
+      },
+      credentials: 'include', // Include credentials to maintain session
+      body: JSON.stringify({ Task_completion: isComplete })
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      if (data.status === 'success') {
+        console.log('Task completion status updated successfully');
+        location.reload(); // Reload the page upon successful update
+      } else {
+        console.error('Error updating task completion status:', data.message);
+      }
+    })
+    .catch(error => {
+      console.error('Error updating task completion status:', error);
+    });
+  }
+</script>

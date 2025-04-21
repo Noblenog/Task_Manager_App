@@ -1,0 +1,215 @@
+:root {
+  --background-gradient: linear-gradient(135deg, #f06, #4a90e2);
+  --text-color: #000000;
+  --task-card-background: #ffe6e6; 
+  --title-color: #ffffff;
+  --link-color: #141313; 
+  --navbar-text-color: #ffffff;
+  --navbar-background-color: #4b0082; 
+  --stats-card-background: #f0dade;
+}
+
+body {
+  height: 100%;
+  padding-top: 70px;
+  color: var(--text-color);
+  background: var(--background-gradient);
+  background-attachment: fixed; 
+  background-size: cover; 
+  font-family: 'Poppins', sans-serif; 
+}
+
+.task-title{
+  color: var(--title-color);
+}
+
+.form-label{
+  color: var(--title-color);
+}
+
+html {
+  height: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--title-color);
+}
+
+.navbar {
+  background-color: var(--navbar-background-color);
+  z-index: 999;
+}
+
+.navbar .nav-link,
+.navbar .navbar-brand {
+  color: var(--navbar-text-color);
+}
+
+.nav-link:hover {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.navbar-toggler{
+  color: var(--navbar-text-color);
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 255, 255, 1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.draggable {
+  position: absolute;
+  cursor: move;
+  z-index: 998;
+  width: 400px;
+}
+
+.task-card {
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; 
+  max-width: 100%; 
+  word-wrap: break-word; 
+  overflow-wrap: break-word; 
+}
+
+.high-priority {
+  background-color: #f8d7da; 
+  border-color: #f5c6cb;
+}
+
+.medium-priority {
+  background-color: #fff3cd; 
+  border-color: #ffeeba;
+}
+
+.low-priority {
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+
+.task-card .card-title,
+.task-card .card-text {
+  word-wrap: break-word; 
+  overflow-wrap: break-word; 
+}
+
+.task-card:hover {
+  transform: translateY(-10px); 
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); 
+}
+
+/* New CSS class for stats cards */
+.stats-card {
+  background-color: var(--stats-card-background);
+  border: none;
+}
+
+.view-task-card {
+  background-color: transparent; 
+  border-color: white;
+  border-style: dashed;
+  color: var(--title-color); 
+}
+
+/* Custom CSS for carousel controls */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0.8); 
+  border-radius: 50%; 
+  width: 50px; 
+  height: 50px; 
+}
+
+.carousel-control-prev-icon::after,
+.carousel-control-next-icon::after {
+  color: #fff; 
+  font-size: 30px; 
+}
+
+/* Custom CSS for chart containers */
+.chart-container {
+  width: 100%; 
+  height: 100%;
+  max-width: 700px; 
+  max-height: 700px; 
+  margin: 0 auto; 
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 15px;
+  }
+
+  .card {
+    margin-bottom: 20px;
+  }
+
+  .navbar-brand {
+    font-size: 1.5rem;
+  }
+
+  .nav-link {
+    font-size: 1rem;
+  }
+
+  .task-card {
+    padding: 15px;
+  }
+
+  .floating-filter {
+    top: 60px;
+    left: 5px;
+    padding: 5px;
+  }
+
+  .filter-box {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: calc(100% - 40px);
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    padding: 0 10px;
+  }
+
+  .card {
+    margin-bottom: 15px;
+  }
+
+  .navbar-brand {
+    font-size: 1.25rem;
+  }
+
+  .nav-link {
+    font-size: 0.875rem;
+  }
+
+  .task-card {
+    padding: 10px;
+  }
+
+  .floating-filter {
+    top: 50px;
+    left: 5px;
+    padding: 5px;
+  }
+}
+
+.login-image {
+  width: 100%;
+  height: auto;
+  background-color: var(--background-gradient); 
+  background-blend-mode: multiply; 
+  object-fit: cover; 
+}

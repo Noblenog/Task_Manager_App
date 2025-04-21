@@ -1,0 +1,19 @@
+<div class="d-flex justify-content-center draggable filter-box">
+  <form method="get" action="/" class="d-flex">
+    <select name="sort" class="form-select me-2">
+      <option value="due_date" <%=sort==='due_date' ? 'selected' : '' %>>Sort by Due Date</option>
+      <option value="priority" <%=sort==='priority' ? 'selected' : '' %>>Sort by Priority</option>
+    </select>
+    <select name="filter" class="form-select me-2">
+      <option value="" <%=filter==='' ? 'selected' : '' %>>Show All</option>
+      <option value="due_today" <%=filter==='due_today' ? 'selected' : '' %>>Due Today</option>
+      <option value="due_this_week" <%=filter==='due_this_week' ? 'selected' : '' %>>Due This Week</option>
+      <option value="due_this_month" <%=filter==='due_this_month' ? 'selected' : '' %>>Due This Month</option>
+      <option value="due_in_future" <%=filter==='due_in_future' ? 'selected' : '' %>>Due in Future</option>
+      <option value="low_priority" <%=filter==='low_priority' ? 'selected' : '' %>>Low Priority</option>
+      <option value="medium_priority" <%=filter==='medium_priority' ? 'selected' : '' %>>Medium Priority</option>
+      <option value="high_priority" <%=filter==='high_priority' ? 'selected' : '' %>>High Priority</option>
+    </select>
+    <button type="submit" class="btn btn-primary">Apply</button>
+  </form>
+</div>
